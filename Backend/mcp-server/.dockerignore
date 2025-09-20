@@ -33,10 +33,11 @@ logs/
 .env
 .env.*
 
-# Railway/배포 관련
-railway.toml
+# 배포 관련 (Google Cloud용)
+cloudbuild.yaml
 Dockerfile
 .dockerignore
+.gcloudignore
 
 # 임시 파일
 temp/

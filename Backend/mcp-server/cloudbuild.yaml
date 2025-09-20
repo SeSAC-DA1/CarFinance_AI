@@ -1,0 +1,60 @@
+# Google Cloud Build 설정 - CarFin MCP Server
+steps:
+  # Docker 이미지 빌드
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-f'
+      - 'Dockerfile'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/carfin-mcp:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/carfin-mcp:latest'
+      - '.'
+    dir: 'Backend/mcp-server'
+
+  # Container Registry에 푸시
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/carfin-mcp:$COMMIT_SHA'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/carfin-mcp:latest'
+
+  # Cloud Run에 배포
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'carfin-mcp'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/carfin-mcp:$COMMIT_SHA'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'asia-northeast1'
+      - '--allow-unauthenticated'
+      - '--memory'
+      - '4Gi'
+      - '--cpu'
+      - '2'
+      - '--max-instances'
+      - '10'
+      - '--set-env-vars'
+      - 'DB_HOST=carfin-db.cbkayiqs4div.ap-northeast-2.rds.amazonaws.com,DB_PORT=5432,DB_DATABASE=carfin,DB_USER=carfin_user'
+
+# 빌드 옵션
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'  # PyTorch 빌드를 위한 고성능 머신
+
+# 환경변수 (민감하지 않은 것만)
+substitutions:
+  _REGION: 'asia-northeast1'
+
+# 빌드 타임아웃 (PyTorch 때문에 시간 더 필요)
+timeout: '1800s'  # 30분

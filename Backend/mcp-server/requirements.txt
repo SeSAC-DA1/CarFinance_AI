@@ -1,4 +1,4 @@
-# CarFin-MCP Server Dependencies - Production Optimized (최소 버전)
+# CarFin-MCP Server Dependencies - NCF 포함 버전
 
 # 웹 프레임워크 (필수)
 fastapi==0.104.1
@@ -8,8 +8,10 @@ pydantic==2.5.0
 # 데이터베이스 (필수)
 asyncpg==0.29.0
 
-# 기본 계산 (numpy만)
+# AI/ML (NCF 모델용)
+torch==2.1.1
 numpy==1.24.3
+scikit-learn==1.3.2
 
 # HTTP 클라이언트 (필수)
 httpx==0.25.2
