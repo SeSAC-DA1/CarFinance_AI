@@ -1,0 +1,32 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "always"
+
+[[deploy.environmentVariables]]
+name = "DB_HOST"
+value = "carfin-db.cbkayiqs4div.ap-northeast-2.rds.amazonaws.com"
+
+[[deploy.environmentVariables]]
+name = "DB_PORT"
+value = "5432"
+
+[[deploy.environmentVariables]]
+name = "DB_DATABASE"
+value = "carfin"
+
+[[deploy.environmentVariables]]
+name = "DB_USER"
+value = "carfin_user"
+
+# 이 값은 Railway 대시보드에서 따로 설정
+# [[deploy.environmentVariables]]
+# name = "DB_PASSWORD"
+# value = "${{DB_PASSWORD}}"
+
+[start]
+command = "python src/carfin_mcp_server.py --host 0.0.0.0 --port $PORT"

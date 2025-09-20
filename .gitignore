@@ -1,0 +1,128 @@
+# CarFin AI - Optimized .gitignore
+
+# Dependencies
+node_modules/
+venv/
+env/
+.env
+.env.local
+.env.production
+.env.development
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Python packages
+*.egg-info/
+.pytest_cache/
+.coverage
+.tox/
+.wheel/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.sublime-workspace
+.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+feedback.db
+
+# AI/ML Model files
+models/*.pth
+models/*.pkl
+*.pkl
+*.h5
+*.model
+*.weights
+
+# Temporary files
+temp/
+tmp/
+.cache/
+.tmp/
+
+# Deployment
+.railway/
+.vercel/
+.netlify/
+
+# Testing
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+
+# Package managers
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Environment specific
+.env.test
+.env.staging
+.secrets
+
+# Documentation temp
+docs/_build/
+site/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# PyTorch
+*.pth
+
+# Sensitive data
+*.key
+*.pem
+*.p12
+*.crt
+credentials.json
+service-account-key.json
+
+# Local development
+local/
+dev/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Claude Code specific
+.claude/
+SuperClaude/
+
+# CarFin specific
+carfin_*.log
+mcp_*.log
+feedback.db
+user_sessions.db
