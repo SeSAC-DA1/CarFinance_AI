@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Python 의존성 복사 및 설치
 COPY requirements.txt .
-RUN pip install --no-cache-dir --no-deps -r requirements.txt \
+RUN pip install --no-cache-dir -r requirements.txt \
     && pip cache purge
 
 # 애플리케이션 코드만 복사 (테스트, 문서 제외)
