@@ -1,0 +1,49 @@
+# 테스트 및 개발 파일 제외
+tests/
+*.test.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 문서 및 설명 파일
+*.md
+docs/
+
+# IDE 파일
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git 파일
+.git/
+.gitignore
+
+# 로그 파일
+*.log
+logs/
+
+# 캐시 파일
+.cache/
+.pytest_cache/
+
+# 환경 파일
+.env
+.env.*
+
+# Railway/배포 관련
+railway.toml
+Dockerfile
+.dockerignore
+
+# 임시 파일
+temp/
+tmp/
+*.tmp
+
+# 백업 파일
+*.bak
+*.backup
+*~
