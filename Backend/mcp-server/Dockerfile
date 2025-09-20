@@ -8,6 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Python 의존성 복사 및 설치
@@ -17,12 +18,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 애플리케이션 코드 복사
 COPY . .
 
-# 포트 노출
-EXPOSE 9000
+# Railway는 동적 포트를 사용하므로 EXPOSE는 제거
+# 헬스체크는 Railway에서 자동 처리
 
-# 헬스체크
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:9000/health || exit 1
-
-# 서버 실행
-CMD ["python", "src/carfin_mcp_server.py", "--host", "0.0.0.0", "--port", "9000"]
+# 서버 실행 - Railway의 $PORT 환경변수 사용
+CMD python src/carfin_mcp_server.py --host 0.0.0.0 --port $PORT
