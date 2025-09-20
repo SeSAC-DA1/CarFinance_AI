@@ -70,7 +70,6 @@ tmp/
 .tmp/
 
 # Deployment
-.railway/
 .vercel/
 .netlify/
 
