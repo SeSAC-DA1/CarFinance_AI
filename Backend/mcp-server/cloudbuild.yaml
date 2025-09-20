@@ -45,7 +45,7 @@ steps:
       - '--max-instances'
       - '10'
       - '--set-env-vars'
-      - 'DB_HOST=carfin-db.cbkayiqs4div.ap-northeast-2.rds.amazonaws.com,DB_PORT=5432,DB_DATABASE=carfin,DB_USER=carfin_user'
+      - 'DB_HOST=carfin-db.cbkayiqs4div.ap-northeast-2.rds.amazonaws.com,DB_PORT=5432,DB_DATABASE=carfin,DB_USER=carfin_user,GOOGLE_CLOUD_PROJECT=$PROJECT_ID,VERTEX_AI_REGION=asia-northeast1'
 
 # 빌드 옵션
 options:
